@@ -1,5 +1,39 @@
 # Backend
 
+Excellente [formation](https://github.com/GalloDaSballo/) sur l'utilisation de Strapi.
+
+Beaucoup de mes projets sont réalisé avec **firebase** en back, c'est un vrais gain de temps.
+
+Aspect positif de **firebase**
+
+- Base de donnée
+- temp réel
+- Stockage
+- Rapidité
+- Stabilité
+- Deploiement
+
+Aspect negatif de **firebase**
+
+- Donnée stocké chez Google (RGPD)
+- Peux devenir limité si le projet commence a avoir beaucoup de trafic
+- Non scallable
+
+Aspect positif de **Strapi**
+
+- Base de donnée
+- Stockage
+- Rapidité
+- Stabilité
+- Pas de limite
+- Scallable
+
+Aspect negatif de **Strapi**
+
+- Deploiement
+
+Quand le client est assez limité dans le temps, et qu'il veux absolument avoir ces donnée chez lui **Strapi** est la meilleur solution, mais si client est au début de sont projet, et que le trafic reste moyen **firebase** seras préféré
+
 ## Install
 
 ```Shell
@@ -8,84 +42,28 @@ npx create-strapi-app ig-backend --quickstart
 
 ## Collection
 
+Il faut creer les collections
+
 > Post
 
 - image | `single media`
 - description | `rich text`
 - likes | `interger`
-- author | `relatoin` user has many post
+- author | `relation` user has many post
 
-## Roles & Permision
+> Likes
 
-> Public
+- user | `relation` user has many likes
+- post | `relation` Post has many likes
 
-- find
-- findOne
-- create
-- delete
-- update
+## ig-backend
 
-## Methode
+[Source](https://github.com/GalloDaSballo/Strapi-Quickstart-Backend)
 
-> Create
+remplacer le dossier **api** et **config** de votre projet strapi
 
-```Js
-let formData = new FormData();
-formData.append("data", JSON.stringify({ description }));
-formData.append("files.image", file);
+## ig-frontend
 
-let res = await fetch(`${url}/posts`, {
-  method: "POST",
-  body: formData,
-});
+[Source](https://github.com/GalloDaSballo/Strapi-Quickstart-Frontend)
 
-let data = await res.json();
-```
-
-> Update
-
-```Js
-let res = await fetch(`${url}/posts/${id}`, {
-  method: 'PUT',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.Stringify({ description })
-})
-
-let data = await res.json()
-```
-
-> Delete
-
-```Js
-let res = await fetch(`${url}/posts/${id}`, {
-  method: 'DELETE'
-})
-
-let data = await res.json()
-```
-
-> Read
-
-```Js
-const res = await fetch(`${url}/posts`);
-const data = await res.json();
-```
-
-## Auth
-
-> Login
-
-```Js
-let res = await fetch(`${url}/auth/local/`, {
-  method: "POST",
-  headers: {
-    "Content-type": "application/json",
-  },
-  body: JSON.stringify({
-    identifier: email,
-    password
-  }),
-});
-```
+La différence avec le projet source c'est **react-router-dom@6** **history@5** **l'optional shining** et quelque optimisation, mais le code react est tres basic, c'est la parti intéraction avec Strapi est la plus intéréssente
